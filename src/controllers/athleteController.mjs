@@ -50,10 +50,11 @@ export const eliminarAtleta = async (req, res) => {
 
 export const buscarPorDisciplina = async (req, res) => {
   try {
-    const { disciplina } = req.query;
+    const { disciplina } = req.params;
     const atletas = await athleteService.buscarPorDisciplina(disciplina);
     res.json(atletas);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
+ 
 };
