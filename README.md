@@ -1,3 +1,6 @@
+Enlace al proyecto desplegado: https://mod4-backend-final.onrender.com 
+
+
 Modelo 1 (rol de visitante)
 
 Como visitante quiero registrarme en la plataforma para poder cargar mis atletas y disciplinas.
@@ -57,3 +60,32 @@ Usar token en rutas protegidas
 En Headers de Postman:
 
 Authorization: Bearer TU_TOKEN
+
+
+https://mod4-backend-final.onrender.com 
+
+endpoints: 
+
+ATLETAS: 
+
+obtener todos: 
+
+https://mod4-backend-final.onrender.com/api/athletes
+
+
+Obtener atleta por ID:
+
+
+https://mod4-backend-final.onrender.com/api/athletes/:id
+
+// Buscar atletas por disciplina
+router.get("/disciplina/:disciplina", buscarPorDisciplina);
+
+// Crear nuevo atleta
+router.post("/", crearAtleta);
+
+// Actualizar atleta por ID
+router.put("/:id", actualizarAtleta);
+
+// Eliminar atleta por ID
+router.delete("/:id", eliminarAtleta);
