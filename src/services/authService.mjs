@@ -28,7 +28,7 @@ async register({ name, email, password, role, country }) {
 
   async login({ email, password }) {
     const user = await User.findOne({ email });
-    if (!user) throw new Error("Credenciales inválidas");
+    if (!user) throw new Error("User not found");
 
     const match = await bcrypt.compare(password, user.password);
     if (!match) throw new Error("Wrong password");
@@ -37,7 +37,7 @@ async register({ name, email, password, role, country }) {
     const token = jwt.sign(
       { id: user._id, rol: user.role },
       SECRET,
-      { expiresIn: "1h" }
+      { expiresIn: "24h" }
     );
 
     return { token, user };
