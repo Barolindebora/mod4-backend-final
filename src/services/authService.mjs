@@ -35,7 +35,7 @@ async register({ name, email, password, role, country }) {
 
     // Generar token
     const token = jwt.sign(
-      { id: user._id, rol: user.rol },
+      { id: user._id, rol: user.role },
       SECRET,
       { expiresIn: "1h" }
     );
