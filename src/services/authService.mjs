@@ -31,7 +31,7 @@ async register({ name, email, password, role, country }) {
     if (!user) throw new Error("Credenciales inválidas");
 
     const match = await bcrypt.compare(password, user.password);
-    if (!match) throw new Error("Credenciales inválidas");
+    if (!match) throw new Error("Wrong password");
 
     // Generar token
     const token = jwt.sign(
