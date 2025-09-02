@@ -5,25 +5,26 @@ import User from "../models/user.mjs";
 const SECRET = process.env.JWT_SECRET || "mi_secreto_super_seguro";
 
 class AuthService {
-  async register({ nombre, email, password, rol }) {
-    // Verificar si ya existe el email
-    const existe = await User.findOne({ email });
-    if (existe) throw new Error("El email ya está registrado");
+async register({ name, email, password, role, country }) {
+  // Verificar si ya existe el email
+  const existe = await User.findOne({ email });
+  if (existe) throw new Error("El email ya está registrado");
 
-    // Encriptar contraseña
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+  // Encriptar contraseña
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(password, salt);
 
-    const user = new User({
-      nombre,
-      email,
-      password: hashedPassword,
-      rol
-    });
+  const user = new User({
+    name,
+    email,
+    password: hashedPassword,
+    role,
+    country
+  });
 
-    await user.save();
-    return user;
-  }
+  await user.save();
+  return user;
+}
 
   async login({ email, password }) {
     const user = await User.findOne({ email });
