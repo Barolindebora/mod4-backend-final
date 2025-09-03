@@ -19,7 +19,7 @@ router.get("/", obtenerAtletas);
 //obtener mi perfil
 router.get("/me", authMiddleware, obtenerMiPerfil);
 // Obtener atleta por ID
-router.get("/:id", authMiddleware,obtenerAtletaPorId);
+router.get("/:id",  obtenerAtletaPorId);
 
 // Buscar atletas por disciplina
 router.get("/disciplina/:disciplina", buscarPorDisciplina);
