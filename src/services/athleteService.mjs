@@ -34,6 +34,10 @@ class AthleteService {
     async buscarPorDisciplina(disciplina) {
         return await this.athleteRepository.buscarPorDisciplina(disciplina);
     }
+
+   async buscarPorOwner(ownerId) {
+    return await this.athleteRepository.buscarPorOwner(ownerId);
+}
 }
 
 export default AthleteService;

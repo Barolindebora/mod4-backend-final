@@ -6,7 +6,9 @@ import {
   crearAtleta,
   actualizarAtleta,
   eliminarAtleta,
+  obtenerMiPerfil
 } from "../controllers/athleteController.mjs";
+import {authMiddleware} from "../middlewares/authMiddleware.mjs";
 
 const router = Router();
 
@@ -14,20 +16,23 @@ const router = Router();
 router.get("/", obtenerAtletas);
 
 
-
+//obtener mi perfil
+router.get("/me", authMiddleware, obtenerMiPerfil);
 // Obtener atleta por ID
-router.get("/:id", obtenerAtletaPorId);
+router.get("/:id", authMiddleware,obtenerAtletaPorId);
 
 // Buscar atletas por disciplina
 router.get("/disciplina/:disciplina", buscarPorDisciplina);
 
 // Crear nuevo atleta
-router.post("/", crearAtleta);
+router.post("/", authMiddleware,crearAtleta);
 
 // Actualizar atleta por ID
-router.put("/:id", actualizarAtleta);
+router.put("/:id", authMiddleware, actualizarAtleta);
 
 // Eliminar atleta por ID
-router.delete("/:id", eliminarAtleta);
+router.delete("/:id", authMiddleware, eliminarAtleta);
+
+
 
 export default router;
