@@ -1,39 +1,41 @@
-import trainerProfile from "../models/trainerProfile.mjs";
+import mongoose from "mongoose";
+import TrainerProfile from "../models/trainerProfile.mjs";
 import IRepository from "./IRepository.mjs";
 
 class TrainerRepository extends IRepository {
     async obtenerPorId(id) {
-        return await trainerProfile.findById(id).populate("atletas"); 
-        // populate para ver los atletas asociados
+        return await TrainerProfile.findById(id);
     }
 
     async obtenerTodos() {
-        return await trainerProfile.find().populate("atletas");
+        return await TrainerProfile.find();
+    }
+
+    async buscarPorEspecialidad(especialidad) {
+        return await TrainerProfile.find({ especialidad });
     }
 
     async crear(nuevoTrainer) {
-        return await trainerProfile.create(nuevoTrainer);
+        return await TrainerProfile.create(nuevoTrainer);
     }
 
     async eliminar(id) {
-        return await trainerProfile.findByIdAndDelete(id);
+        return await TrainerProfile.findByIdAndDelete(id);
     }
 
     async actualizar(id, trainerActualizado) {
-        return await trainerProfile.findByIdAndUpdate(id, trainerActualizado, { new: true });
+        return await TrainerProfile.findByIdAndUpdate(id, trainerActualizado, { new: true });
     }
 
-    // 🔎 Consulta especializada
-    async buscarPorEspecialidad(especialidad) {
-        return await trainerProfile.find({ especialidad });
+    // Buscar perfil por ownerId (ObjectId)
+    async buscarPorOwner(ownerId) {
+        if (!mongoose.Types.ObjectId.isValid(ownerId)) return null;
+        return await TrainerProfile.findOne({ owner: ownerId });
     }
 
-    async agregarAtleta(trainerId, atletaId) {
-        return await trainerProfile.findByIdAndUpdate(
-            trainerId,
-            { $push: { atletas: atletaId } },
-            { new: true }
-        ).populate("atletas");
+    // Buscar perfil por slug u otro identificador string (opcional)
+    async buscarPorOwnerSlug(slug) {
+        return await TrainerProfile.findOne({ ownerSlug: slug });
     }
 }
 

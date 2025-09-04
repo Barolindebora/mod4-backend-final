@@ -35,8 +35,8 @@ class TrainerService {
         return await this.trainerRepository.buscarPorEspecialidad(especialidad);
     }
 
-    async agregarAtleta(trainerId, atletaId) {
-        return await this.trainerRepository.agregarAtleta(trainerId, atletaId);
+    async buscarPorOwner(ownerId) {
+        return await this.trainerRepository.buscarPorOwner(ownerId);
     }
 }
 
