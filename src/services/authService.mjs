@@ -35,12 +35,12 @@ async register({ name, email, password, role, country }) {
 
     // Generar token
     const token = jwt.sign(
-      { id: user._id, rol: user.role },
+      { id: user._id, role: user.role },
       SECRET,
       { expiresIn: "24h" }
     );
 
-    return { token, user };
+    return { token, user }
   }
 
   verifyToken(token) {

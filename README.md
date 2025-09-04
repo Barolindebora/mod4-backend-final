@@ -82,6 +82,7 @@ https://mod4-backend-final.onrender.com/api/athletes/:id
 router.get("/disciplina/:disciplina", buscarPorDisciplina);
 
 // Crear nuevo atleta
+
 router.post("/", crearAtleta);
 
 // Actualizar atleta por ID
@@ -89,3 +90,24 @@ router.put("/:id", actualizarAtleta);
 
 // Eliminar atleta por ID
 router.delete("/:id", eliminarAtleta);
+
+Rutas entrenadores:  
+// Obtener todos los entrenadores
+router.get("/", obtenerEntrenadores);
+https://mod4-backend-final.onrender.com/api/trainers
+
+// Buscar entrenadores por especialidad (query string)
+router.get("/buscar/especialidad", buscarPorEspecialidad);
+
+// Crear nuevo entrenador
+router.post("/", authMiddleware, crearEntrenador);
+
+// Actualizar entrenador
+router.put("/:id", authMiddleware, actualizarEntrenador);
+
+// Eliminar entrenador
+router.delete("/:id", authMiddleware, eliminarEntrenador);
+
+// Obtener entrenador por ID
+https://mod4-backend-final.onrender.com/api/trainers/:id
+router.get("/:id", obtenerEntrenadorPorId);
