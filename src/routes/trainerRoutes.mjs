@@ -6,6 +6,7 @@ import {
   actualizarEntrenador,
   eliminarEntrenador,
   buscarPorEspecialidad,
+  obtenerMiPerfil
   
 } from "../controllers/trainerController.mjs";
 
@@ -14,6 +15,8 @@ const router = Router();
 
 // Obtener todos los entrenadores
 router.get("/", obtenerEntrenadores);
+// Obtener mi perfil de entrenador
+router.get("/me", authMiddleware, obtenerMiPerfil);
 
 // Buscar entrenadores por especialidad (query string)
 router.get("/buscar/especialidad", buscarPorEspecialidad);
